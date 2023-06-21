@@ -1,0 +1,24 @@
+import os
+import glob
+import re
+
+# Specify the directory path
+directory = 'E:\Foldername'
+
+# Specify the file extension to search for (in this case, JPG)
+file_extension = '*.jpg'
+
+# Find files matching the specified extension
+file_list = glob.glob(os.path.join(directory, file_extension))
+# Rename files
+for file_path in file_list:
+    print(file_path)
+    file_name = os.path.basename(file_path)
+    numbers = re.findall(r'\d+', file_name )
+    new_file_name=''
+    for number in numbers:
+        new_file_name =new_file_name+number
+        new_file_path = os.path.join(directory, new_file_name)
+        print (new_file_name)
+        new_file_path=new_file_path  + '.jpg'
+        os.rename(file_path, new_file_path   )
